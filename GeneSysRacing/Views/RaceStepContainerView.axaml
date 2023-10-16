@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GeneSysRacing.Views.RaceStepContainerView">
+
+	<Grid RowDefinitions="*, Auto">
+		<StackPanel Spacing="8" HorizontalAlignment="Center" VerticalAlignment="Center" >
+			<TextBlock Text="{Binding ActiveHeader}" Classes="Bold" HorizontalAlignment="Center" FontSize="40"/>
+			<Panel Height="2" Background="White" Width="600"/>
+			<ContentPresenter VerticalAlignment="Center" Content="{Binding ActiveControl}"/>
+		</StackPanel>
+
+		<Grid Grid.Row="1" ColumnDefinitions="250, *, 250" RowDefinitions="150">
+			<Button Classes="BigButton" IsVisible="{Binding ActiveControl.DataContext.IsLeftButtonVisible, FallbackValue=False, TargetNullValue=False}" Command="{Binding BackCommand}">
+				<TextBlock Text="{Binding ActiveControl.DataContext.LeftButtonText}" Classes="Bold" FontSize="20"/>
+			</Button>
+
+			<Grid Grid.Column="1" HorizontalAlignment="Center">
+				<TextBlock Text="FINISHED" Classes="Bold" Foreground="White" FontSize="50" IsVisible="{Binding ActiveControl.DataContext.IsShowFinishedExtensionVisible, FallbackValue=False, TargetNullValue=False}"/>
+				<StackPanel Spacing="8" IsVisible="{Binding ActiveControl.DataContext.IsShowOverviewExtensionVisible, FallbackValue=False, TargetNullValue=False}">
+					<TextBlock Text="Letzter Spieler:" Classes="Bold" Foreground="White" FontSize="20"/>
+					<Grid ColumnDefinitions="Auto, *, Auto" IsVisible="{Binding !ActiveControl.DataContext.CurrentRace.IsMultiplayerSelected}">
+						<TextBlock Text="00" Classes="Regular" Foreground="Transparent" Margin="0,0,20,0" FontSize="20"/>
+						<TextBlock Text="{Binding ActiveControl.DataContext.LastPlayer.Rank}" Classes="Regular" HorizontalAlignment="Right" Margin="0,0,20,0" Foreground="White" FontSize="20"/>
+						<TextBlock Grid.Column="1" Text="{Binding ActiveControl.DataContext.LastPlayer.Name}" Classes="Regular" Foreground="White" FontSize="20"/>
+						<TextBlock Grid.Column="2" Text="{Binding ActiveControl.DataContext.LastPlayer.LapRecord.DisplayTimeSpan}" Classes="Regular" Margin="20,0,0,0" Foreground="White" FontSize="20"/>
+					</Grid>
+				</StackPanel>
+			</Grid>
+
+			<Button Grid.Column="2" Classes="BigButton" IsVisible="{Binding ActiveControl.DataContext.IsRightButtonVisible, FallbackValue=False, TargetNullValue=False}" Command="{Binding NextCommand}" IsEnabled="{Binding ActiveControl.DataContext.IsRightButtonEnabled}">
+				<TextBlock Text="{Binding ActiveControl.DataContext.RightButtonText}" Classes="Bold" FontSize="20"/>
+			</Button>
+		</Grid>
+	</Grid>
+	
+</UserControl>

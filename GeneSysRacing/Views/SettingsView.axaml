@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="GeneSysRacing.Views.SettingsView">
+
+	<StackPanel Spacing="8" KeyDown="EntryFinishedHelper" Width="400">
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+			<TextBlock Text="Einzelspieler" Classes="Regular" Margin="0,0,8,0"/>
+			<ToggleSwitch Classes="LeftRight" IsChecked="{Binding CurrentRace.IsMultiplayerSelected}"/>
+			<TextBlock Text="Mehrspieler" Classes="Regular" />
+		</StackPanel>
+		<Grid ColumnDefinitions="Auto, 8, *">
+			<TextBlock Text="Name:" Classes="Regular" />
+			<TextBox Grid.Column="2" Text="{Binding CurrentRace.Name}"/>
+		</Grid>
+		<Grid ColumnDefinitions="Auto, 8, *" IsVisible="{Binding !CurrentRace.IsMultiplayerSelected}">
+			<TextBlock Text="Rundenzahl:" Classes="Regular" />
+			<TextBox Grid.Column="2" Text="{Binding CurrentRace.MaxLaps}"/>
+		</Grid>
+		<Grid ColumnDefinitions="Auto, 8, 140, 8, Auto, 8, *" >
+			<TextBlock Text="Server IP:" Classes="Regular" />
+			<ComboBox Grid.Column="2" ItemsSource="{Binding AvailableIPsCollection}" SelectedItem="{Binding SelectedIPAdress}" Height="35"/>
+			<!--<TextBox Grid.Column="2" Text="{Binding CurrentRace.IP}"/>-->
+			<TextBlock Grid.Column="4" Text="ID" Classes="Regular" />
+			<TextBox Grid.Column="6" Text="{Binding CurrentRace.ID}" Classes="Regular" />
+		</Grid>
+		<StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center" IsVisible="{Binding !CurrentRace.IsMultiplayerSelected}">
+			<CheckBox Content="Firma" IsChecked="{Binding CurrentRace.IsCompanyEnabled}"/>
+			<CheckBox Content="E-Mail" IsChecked="{Binding CurrentRace.IsEMailEnabled}"/>
+		</StackPanel>
+	</StackPanel>
+	
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="600"
+             x:Class="GeneSysRacing.Views.StartRunView">
+
+	<StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center">
+		<Image Source="/Resources/App_Restart_marked.png" Height="250" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+		<Button Classes="Icon">
+			<Button.Flyout>
+				<Flyout Placement="Center" ShowMode="TransientWithDismissOnPointerMoveAway">
+					<Grid RowDefinitions="Auto, *" Height="300">
+						<Image Grid.RowSpan="2" Source="/Resources/App_Connect.png" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+						<TextBlock Margin="140,80,0,0" Text="{Binding CurrentRace.IP, StringFormat='http://{0}:8001/game'}" Classes="Regular" FontSize="13" Foreground="White"/>
+						<TextBlock Margin="140,163,0,0" Text="{Binding CurrentRace.ID}" Classes="Regular" FontSize="13" Foreground="White"/>
+					</Grid>
+				</Flyout>
+			</Button.Flyout>
+			<Path Data="{Binding QuestionmarkIcon}" Classes="Icon" />
+		</Button>
+		<Image Source="/Resources/App_StartEngine.png" Height="250" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+	</StackPanel>
+	
+</UserControl>

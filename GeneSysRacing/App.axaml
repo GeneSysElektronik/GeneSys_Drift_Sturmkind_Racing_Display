@@ -1,0 +1,25 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:GeneSysRacing"
+             x:Class="GeneSysRacing.App">
+	
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+	<Application.Resources>
+		<Color x:Key="Accent">#4898cb</Color>
+
+		<SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
+	</Application.Resources>
+
+	<Application.Styles>
+		<FluentTheme />
+		<StyleInclude Source="/Templates/Styles/Styles.axaml" />
+		<StyleInclude Source="/Templates/Controls/Button.axaml" />
+		<StyleInclude Source="/Templates/Controls/PopUp.axaml" />
+		<StyleInclude Source="/Templates/Controls/GroupBox.axaml" />
+		<StyleInclude Source="/Templates/Controls/TitleBar.axaml" />
+	</Application.Styles>
+	
+</Application>

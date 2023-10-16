@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GeneSysRacing.Views.CurrentRunView">
+
+	<UserControl.Styles>
+		<Style Selector="TextBlock.Time">
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontFamily" Value="Consolas" />
+		</Style>
+		<Style Selector="TextBlock.FastestTime">
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="Foreground" Value="{DynamicResource LightBlue}" />
+			<Setter Property="FontFamily" Value="Consolas" />
+		</Style>
+	</UserControl.Styles>
+
+	<Grid>
+		<StackPanel Spacing="20" IsVisible="{Binding !CurrentRace.IsMultiplayerSelected}">
+			<StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" >
+				<TextBlock Text="Runde:" Classes="Bold" FontSize="20" />
+				<TextBlock Text="{Binding LapInformation}" Classes="Regular" Foreground="White" FontSize="20"/>
+				<TextBlock Text="Beste Zeit:" Classes="Bold" FontSize="20"/>
+				<TextBlock Text="{Binding CurrentPlayer.LapRecord.DisplayTimeSpan}" Classes="Regular" Foreground="White" FontSize="20"/>
+			</StackPanel>
+			<ScrollViewer>
+				<ItemsControl ItemsSource="{Binding CurrentPlayer.LapTimes}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center">
+								<Grid>
+									<TextBlock Text="00" Classes="Regular" Foreground="Transparent" FontSize="20" FontFamily="Consolas"/>
+									<TextBlock Text="{Binding Lap}" Classes="Regular" Foreground="White" FontSize="20" FontFamily="Consolas"/>
+								</Grid>
+								<TextBlock Text="{Binding DisplayTimeSpan}" Classes="Time" Classes.FastestTime="{Binding IsFastestLap}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+		</StackPanel>
+		<ScrollViewer IsVisible="{Binding CurrentRace.IsMultiplayerSelected}">
+			<ItemsControl ItemsSource="{Binding MultiplayerCollection}" HorizontalAlignment="Center">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="Auto, *, Auto">
+							<TextBlock Text="00" Classes="Regular" Foreground="Transparent" FontSize="20" FontFamily="Consolas"/>
+							<TextBlock Text="{Binding Rank}" Classes="Regular" Foreground="White" FontSize="20" FontFamily="Consolas"/>
+							<TextBlock Grid.Column="1" Text="{Binding Name}" Classes="Regular" Foreground="White" FontSize="20" FontFamily="Consolas"/>
+							<TextBlock Grid.Column="2" Text="{Binding LapRecord.DisplayTimeSpan}" Classes="Regular" Margin="20,0,0,0" Foreground="White" FontSize="20" FontFamily="Consolas"/>
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	
+		<Button Classes="Icon" HorizontalAlignment="Right" VerticalAlignment="Top">
+			<Button.Flyout>
+				<Flyout Placement="Center" ShowMode="TransientWithDismissOnPointerMoveAway">
+					<Grid RowDefinitions="Auto, *" Height="300">
+						<Image Grid.RowSpan="2" Source="/Resources/App_Connect.png" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+						<TextBlock Margin="140,80,0,0" Text="{Binding CurrentRace.IP, StringFormat='http://{0}:8001/game'}" Classes="Regular" FontSize="13" Foreground="White"/>
+						<TextBlock Margin="140,163,0,0" Text="{Binding CurrentRace.ID}" Classes="Regular" FontSize="13" Foreground="White"/>
+					</Grid>
+				</Flyout>
+			</Button.Flyout>
+			<Path Data="{Binding QuestionmarkIcon}" Classes="Icon" />
+		</Button>
+	</Grid>
+	
+</UserControl>

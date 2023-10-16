@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GeneSysRacing.Views.NewRunView">
+
+	<Grid RowDefinitions="Auto, 8, Auto, 8, Auto" ColumnDefinitions="Auto, 8, *" KeyDown="EntryFinishedHelper"  Width="300">
+		<TextBlock Text="Name:" Classes="Bold" Foreground="White" FontSize="20"/>
+		<TextBox Grid.Column="2" Text="{Binding CurrentPlayer.Name}"/>
+		<TextBlock Grid.Row="2" Text="E-Mail:" Classes="Bold" Foreground="White" FontSize="20" IsVisible="{Binding CurrentRace.IsEMailEnabled}"/>
+		<TextBox Grid.Row="2" Grid.Column="2" Text="{Binding CurrentPlayer.EMail}" IsVisible="{Binding CurrentRace.IsEMailEnabled}"/>
+		<TextBlock Grid.Row="4" Text="Firma:" Classes="Bold" Foreground="White" FontSize="20" IsVisible="{Binding CurrentRace.IsCompanyEnabled}"/>
+		<TextBox Grid.Row="4" Grid.Column="2" Text="{Binding CurrentPlayer.Company}" IsVisible="{Binding CurrentRace.IsCompanyEnabled}"/>
+	</Grid>
+	
+</UserControl>

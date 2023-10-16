@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GeneSysRacing.Views.FinishedView">
+
+	<UserControl.Styles>
+		<Style Selector="TextBlock.Time">
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-Regular.ttf#Barlow" />
+		</Style>
+		<Style Selector="TextBlock.FastestTime">
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="Foreground" Value="{DynamicResource LightBlue}" />
+			<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-SemiBold.ttf#Barlow" />
+		</Style>
+	</UserControl.Styles>
+
+	<StackPanel Spacing="20">
+		<StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center">
+			<TextBlock Text="Beste Zeit:" Classes="Bold" FontSize="20"/>
+			<TextBlock Text="{Binding CurrentPlayer.LapRecord.DisplayTimeSpan}" Classes="Regular" Foreground="White" FontSize="20"/>
+		</StackPanel>
+		<ScrollViewer>
+			<ItemsControl ItemsSource="{Binding CurrentPlayer.LapTimes}" HorizontalAlignment="Center">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal" Spacing="20">
+							<Grid>
+								<TextBlock Text="00" Classes="Regular" Foreground="Transparent" FontSize="20"/>
+								<TextBlock Text="{Binding Lap}" Classes="Regular" Foreground="White" FontSize="20" FontFamily="Consolas"/>
+							</Grid>
+							<TextBlock Text="{Binding DisplayTimeSpan}" Classes="Time" Classes.FastestTime="{Binding IsFastestLap}" FontFamily="Consolas"/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	</StackPanel>
+	
+</UserControl>

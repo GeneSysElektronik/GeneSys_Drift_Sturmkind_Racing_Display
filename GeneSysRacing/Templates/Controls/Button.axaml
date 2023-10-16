@@ -1,0 +1,112 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Templates.Controls">
+  
+	<Design.PreviewWith>
+		<StackPanel Orientation="Horizontal">
+			<StackPanel Background="{DynamicResource ThemeBackgroundBrush}" Margin="20" Spacing="8">
+				<controls:Button Classes="Empty" />
+				<controls:Button Classes="Empty" IsEnabled="False"/>
+				<controls:Button Classes="Filled" />
+				<controls:Button Classes="Filled" IsEnabled="False"/>
+				<controls:Button Classes="Thin" Text="Test 1 2 3 Hallo" Width="150" Height="66"/>
+			</StackPanel>
+		</StackPanel>
+    </Design.PreviewWith>
+	
+	<Style Selector="controls|Button">
+		<Setter Property="CornerRadius" Value="10" />
+		<Setter Property="BorderThickness" Value="2" />
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-SemiBold.ttf#Barlow" />
+		<Setter Property="FontSize" Value="14" />
+		<Setter Property="Height" Value="35" />
+		<Setter Property="Cursor" Value="Hand" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Button Name="PART_ButtonRoot"
+					Padding="20,0" 
+					HorizontalAlignment="Stretch" 
+					HorizontalContentAlignment="Center" 
+					Height="{TemplateBinding Height}"
+					CornerRadius="{TemplateBinding CornerRadius}" 
+					BorderThickness="{TemplateBinding BorderThickness}" 
+					BorderBrush="{TemplateBinding BorderBrush}" 
+					Background="{TemplateBinding Background}" 
+					Command="{TemplateBinding Command}" 
+					CommandParameter="{TemplateBinding CommandParameter}"
+					Margin="{TemplateBinding Margin}">
+					<Grid RowDefinitions="*" ColumnDefinitions="Auto, *" >
+						<Path 
+							Data="{TemplateBinding PathData}" 
+							Fill="{TemplateBinding Path.Fill}" 
+							MaxWidth="{TemplateBinding FontSize}" 
+							MaxHeight="{TemplateBinding FontSize}" 
+							Margin="7" 
+							Stretch="Uniform" 
+							IsVisible="{TemplateBinding HasIcon}" 
+							VerticalAlignment="Center"/>
+						<TextBlock TextWrapping="Wrap"
+							Grid.Column="1" 
+							VerticalAlignment="Center"
+							FontFamily="{TemplateBinding FontFamily}"
+							Text="{TemplateBinding Text}" 
+							Foreground="{TemplateBinding Foreground}" 
+							FontSize="{TemplateBinding FontSize}" />
+					</Grid>
+				</Button>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<Style Selector="controls|Button.Filled">
+		<Setter Property="Background" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="Path.Fill" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+	</Style>
+	<Style Selector="controls|Button.Empty">
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+		<Setter Property="Path.Fill" Value="{DynamicResource ThemeForegroundBrush}" />
+	</Style>
+
+	<Style Selector="controls|Button:pointerover">
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="Path.Fill" Value="{DynamicResource ThemeForegroundBrush}" />
+	</Style>
+	<Style Selector="#PART_ButtonRoot:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderPointeroverBrush}" />
+	</Style>
+
+	<Style Selector="controls|Button:disabled">
+		<Setter Property="Foreground" Value="{DynamicResource DeepBlue}" />
+		<Setter Property="Path.Fill" Value="{DynamicResource DeepBlue}" />
+	</Style>
+	<Style Selector="#PART_ButtonRoot:disabled /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource ThemeDisabledBrush}" />
+	</Style>
+
+	<Style Selector="controls|Button.Thin">
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+		<Setter Property="Path.Fill" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-Regular.ttf#Barlow" />
+	</Style>
+	<Style Selector="controls|Button:pointerover.Thin /template/ Button#PART_ButtonRoot > ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource LightBlue}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource LightBlue}" />
+		<Setter Property="Foreground" Value="{DynamicResource DeepBlue}" />
+	</Style>
+	<Style Selector="controls|Button:pointerover.Thin /template/ Button#PART_ButtonRoot TextBlock">
+		<Setter Property="Foreground" Value="{DynamicResource DeepBlue}" />
+	</Style>
+	<Style Selector="controls|Button:pointerover.Thin /template/ Button#PART_ButtonRoot Path">
+		<Setter Property="Fill" Value="{DynamicResource DeepBlue}" />
+	</Style>
+
+</Styles>

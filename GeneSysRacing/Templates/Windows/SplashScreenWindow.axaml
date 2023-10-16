@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="using:Templates.ViewModels"
+        x:Class="Templates.Windows.SplashScreenWindow"
+		WindowStartupLocation="CenterScreen"
+		ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+		Icon="/Assets/applicationIcon.ico"
+        Title="{Binding	ProgramName}"
+		CanResize="False"
+		Width="500" 
+		Height="300">
+
+	<Design.DataContext>
+		<vm:SplashScreenWindowViewModel />
+	</Design.DataContext>
+
+	<Grid 
+		RowDefinitions="Auto, *, Auto" 
+		ColumnDefinitions="Auto, *, Auto" 
+		Width="500" 
+		Height="300">
+		<Image 
+			Grid.RowSpan="3" 
+			Grid.ColumnSpan="3" 
+			Source="/Templates/Resources/SplashScreen.jpg"
+			RenderOptions.BitmapInterpolationMode="HighQuality"/>
+		<Image 
+			Grid.RowSpan="3" 
+			Grid.ColumnSpan="3" 
+			Source="/Assets/applicationIcon.ico" 
+			Height="128" 
+			Width="128" 
+			HorizontalAlignment="Center" 
+			VerticalAlignment="Center" 
+			Margin="0,0,0,68" 
+			RenderOptions.BitmapInterpolationMode="HighQuality"/>
+		<TextBlock 
+			Padding="20,10" 
+			Text="{Binding ApplicationName}" 
+			Foreground="#B0D4FF" 
+			FontFamily="/Templates/Fonts/Barlow-Bold.ttf#Barlow"
+			FontSize="20" />
+		<TextBlock 
+			Padding="20,10" 
+			Grid.Row="2" 
+			Grid.Column="2" 
+			Text="{Binding ApplicationVersion, StringFormat='v{0}'}" 
+			Foreground="#B0D4FF" 
+			FontFamily="/Templates/Fonts/Barlow-Bold.ttf#Barlow"
+			FontSize="16"/>
+	</Grid>
+
+</Window>

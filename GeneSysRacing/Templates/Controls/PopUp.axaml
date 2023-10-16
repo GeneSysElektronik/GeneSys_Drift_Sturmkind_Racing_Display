@@ -1,0 +1,52 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Templates.Controls">
+  
+	<Design.PreviewWith>
+		<StackPanel >
+			<controls:PopUp Margin="50" HasCloseButton="True" ApplicationIcon="/Assets/applicationIcon.ico" HasFullscreenButton="true">
+				<TextBlock Text="Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text Long Text" TextWrapping="Wrap"/>
+			</controls:PopUp>
+		</StackPanel>
+	</Design.PreviewWith>
+
+	<Styles.Resources>
+		<Geometry x:Key="Close"> M24 27.3 14.1 37.2Q13.4 37.9 12.45 37.9Q11.5 37.9 10.8 37.2Q10.1 36.5 10.1 35.55Q10.1 34.6 10.8 33.9L20.7 24L10.8 14.1Q10.1 13.4 10.1 12.45Q10.1 11.5 10.8 10.8Q11.5 10.1 12.45 10.1Q13.4 10.1 14.1 10.8L24 20.7L33.9 10.8Q34.6 10.1 35.55 10.1Q36.5 10.1 37.2 10.8Q37.9 11.5 37.9 12.45Q37.9 13.4 37.2 14.1L27.3 24L37.2 33.9Q37.9 34.6 37.9 35.55Q37.9 36.5 37.2 37.2Q36.5 37.9 35.55 37.9Q34.6 37.9 33.9 37.2Z</Geometry>
+	</Styles.Resources>
+	
+	<Style Selector="controls|PopUp">
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderBrush}" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<DockPanel>
+					<DockPanel DockPanel.Dock="Top" Height="30"  >
+						<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Background="{TemplateBinding Background}" Height="30" Spacing="8">
+							<Button ToolTip.Tip="Fullscreen" Background="Transparent" Width="30" Padding="5" IsVisible="{TemplateBinding HasFullscreenButton}" Command="{TemplateBinding FullscreenCommand}">
+								<Path Data="{TemplateBinding FullscreenButtonPathData}" Stretch="Uniform" Fill="{TemplateBinding Foreground}" />
+							</Button>
+							<Button ToolTip.Tip="Close" Background="Transparent" Width="30" Command="{TemplateBinding CloseCommand}" Padding="5" IsVisible="{TemplateBinding HasCloseButton}" >
+								<Path Data="{StaticResource Close}" Stretch="Uniform" Fill="{TemplateBinding Foreground}" />
+							</Button>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Spacing="10" IsHitTestVisible="False" Background="{TemplateBinding Background}" >
+							<Image Source="{TemplateBinding ApplicationIcon}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+							<TextBlock Classes="Bold" FontSize="{TemplateBinding HeaderFontSize}" Text="{TemplateBinding HeaderLabel}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center"/>
+						</StackPanel>
+					</DockPanel>
+					<DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Background="{TemplateBinding Background}" IsVisible="{TemplateBinding HasNavigationBar}">
+						<Rectangle Fill="{TemplateBinding BorderBrush}" Height="1" DockPanel.Dock="Top" />
+						<Panel DockPanel.Dock="Top" Height="10" />
+						<controls:Button DockPanel.Dock="Left" Text="{TemplateBinding CancelButtonText}" Classes="Empty" Classes.Thin="{TemplateBinding IsThin}"  PathData="{TemplateBinding CancelButtonPathData}" Command="{TemplateBinding CancelButtonCommand}" IsEnabled="{TemplateBinding CancelButtonIsEnabled}" IsVisible="{TemplateBinding CancelButtonIsVisible}" />
+						<controls:Button DockPanel.Dock="Right" Text="{TemplateBinding NextButtonText}" Classes="Filled" Classes.Thin="{TemplateBinding IsThin}" PathData="{TemplateBinding NextButtonPathData}"   Command="{TemplateBinding NextButtonCommand}"   IsEnabled="{TemplateBinding NextButtonIsEnabled}"   IsVisible="{TemplateBinding NextButtonIsVisible}" />
+						<Panel DockPanel.Dock="Right" Width="10" />
+						<controls:Button DockPanel.Dock="Right" Text="{TemplateBinding BackButtonText}" Classes="Empty" Classes.Thin="{TemplateBinding IsThin}"  PathData="{TemplateBinding BackButtonPathData}"   Command="{TemplateBinding BackButtonCommand}"   IsEnabled="{TemplateBinding BackButtonIsEnabled}"   IsVisible="{TemplateBinding BackButtonIsVisible}" />
+					</DockPanel>
+					<ContentPresenter Padding="0,20" Content="{TemplateBinding Child}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}"/>
+				</DockPanel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+	
+</Styles>

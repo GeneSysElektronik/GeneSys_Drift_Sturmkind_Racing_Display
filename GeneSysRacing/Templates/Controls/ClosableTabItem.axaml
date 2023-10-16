@@ -1,0 +1,75 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Templates.Controls">
+
+	<Design.PreviewWith>
+		<Grid Width="500" Height="500">
+			<TabControl>
+				<controls:ClosableTabItem Header="Release Notes" Width="150" Height="66" HasCloseButton="True"/>
+				<controls:ClosableTabItem Header="Workspace 1" Width="150" Height="66" HasCloseButton="True"/>
+				<controls:ClosableTabItem Header="Workspace 2" Width="150" Height="66" HasCloseButton="True"/>
+			</TabControl>
+		</Grid>
+    </Design.PreviewWith>
+	
+    <Style Selector="controls|ClosableTabItem">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+				<Grid RowDefinitions="8, *" ColumnDefinitions="*, 8" Margin="0,0,8,8">
+					<Border Grid.Row="1" Background="{DynamicResource ThemeFrameBackgroundBrush}" CornerRadius="10" BorderThickness="1" BorderBrush="{DynamicResource ThemeBorderBrush}" Padding="12,0">
+						<Grid RowDefinitions="*, 12">
+							<TextBlock 
+								Text="{TemplateBinding Header}" 
+								Classes="NotSelected" 
+								Classes.Selected="{Binding $parent[TabItem].IsSelected}"
+								Classes.Pointerover="{Binding $parent[TabItem].IsPointerOver}"
+								HorizontalAlignment="Center" 
+								VerticalAlignment="Center"/>
+							<TextBox
+								Text="{TemplateBinding Header}"
+								IsVisible="{TemplateBinding IsEditHeaderActive}"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"/>
+							<Panel Grid.Row="1" Background="{DynamicResource ThemeForegroundBrush}" Height="2" Margin="0,0,0,2" IsVisible="{Binding $parent[TabItem].IsSelected}"/>
+						</Grid>
+					</Border>
+					<StackPanel Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="2" HorizontalAlignment="Right" VerticalAlignment="Top" IsVisible="{Binding $parent[TabItem].IsPointerOver}">
+						<Button Background="{DynamicResource ThemeBackgroundBrush}" CornerRadius="5" Height="22" Width="22" Name="PART_EditHeader" IsVisible="{Binding HasEditHeaderButton}">
+							<Path Data="{StaticResource Personalize}" Classes="Icon" />
+						</Button>
+						<Button Background="{DynamicResource ThemeBackgroundBrush}" CornerRadius="5" Height="22" Width="22" Command="{TemplateBinding CloseTabCommand}" CommandParameter="{TemplateBinding CloseTabCommandParameter}" IsVisible="{Binding HasCloseButton}">
+							<Path Data="{StaticResource Close}" Classes="Icon" />
+						</Button>
+					</StackPanel>
+				</Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+	<Style Selector="controls|ClosableTabItem:not(:selected):not(:pointerover) /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Opacity" Value="0.5" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:selected /template/ Border#PART_SelectedPipe">
+		<Setter Property="Background" Value="{DynamicResource ThemeForegroundBrush}" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-SemiBold.ttf#Barlow" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:selected /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="CornerRadius" Value="10" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:not(:selected):pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="FontFamily" Value="/Templates/Fonts/Barlow-SemiBold.ttf#Barlow" />
+	</Style>
+	<Style Selector="controls|ClosableTabItem:not(:selected):pointerover /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="{DynamicResource ThemeFrameBackgroundBrush}" />
+		<Setter Property="CornerRadius" Value="10" />
+	</Style>
+</Styles>

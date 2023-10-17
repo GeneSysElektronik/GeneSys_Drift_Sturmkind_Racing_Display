@@ -1,5 +1,6 @@
 ﻿using GeneSysRacing.BaseViewModel;
 using GeneSysRacing.Models;
+using GeneSysRacing.ViewModels.Views;
 using ReactiveUI;
 using System;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Reactive;
 
 namespace GeneSysRacing.ViewModels
 {
-	public class MainViewModel : ReactiveObject
+    public class MainViewModel : ReactiveObject
 	{
 		#region Private Members
 		private RaceBaseViewModel? _raceContainer;

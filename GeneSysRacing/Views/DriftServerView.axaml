@@ -6,12 +6,12 @@
              x:Class="GeneSysRacing.Views.DriftServerView">
 
 	<StackPanel Width="500" Spacing="8">
-		<!--<c:GroupBox Header="Docker">
+		<c:GroupBox Header="Docker">
 			<StackPanel Spacing="8">
 				<TextBox Text="{Binding DockerLocation}" />
 				<c:Button Text="Durchsuchen ..." Classes="Thin" PathData="{Binding BrowseIcon}" Command="{Binding BrowseDockerCommand}" HorizontalAlignment="Right"/>
 			</StackPanel>
-		</c:GroupBox>-->
+		</c:GroupBox>
 		<c:GroupBox Header="API">
 			<StackPanel Spacing="8">
 				<TextBox Text="{Binding APILocation}" />

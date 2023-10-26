@@ -82,7 +82,7 @@ namespace GeneSysRacing.ViewModels.Views
 						continue;
 					}
 
-					TimeSpan lastLapTime = TimeSpan.FromSeconds(lastLapSeconds);
+					TimeSpan lastLapTime = lastLapSeconds > 0 ? TimeSpan.FromSeconds(lastLapSeconds) : TimeSpan.MaxValue;
 
 					if (player.LapsCompleted < lapsCompleted)
 					{
@@ -113,7 +113,7 @@ namespace GeneSysRacing.ViewModels.Views
 				
 				long lapsCompleted = singlePlayerStatus.Value<long>("laps_completed");
 				if (!double.TryParse(singlePlayerStatus.Value<string?>("last_lap")?.Replace('.', ','), out double lastLapSeconds)) return;
-				TimeSpan lastLapTime = TimeSpan.FromSeconds(lastLapSeconds);
+				TimeSpan lastLapTime = lastLapSeconds > 0 ? TimeSpan.FromSeconds(lastLapSeconds) : TimeSpan.MaxValue;
 
 				if (_lapsCompleted < lapsCompleted)
 				{
